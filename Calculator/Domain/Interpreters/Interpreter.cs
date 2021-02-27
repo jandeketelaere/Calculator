@@ -8,9 +8,7 @@ namespace Domain.Interpreters
         public int Interpret(Expression expression)
         {
             var visitor = new CalculatorExpressionVisitor();
-            visitor.Visit(expression);
-
-            var result = visitor.Result;
+            var result = visitor.Visit(expression);
 
             return result;
         }

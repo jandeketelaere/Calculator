@@ -10,7 +10,7 @@ namespace Domain.Expressions
         public static Expression Binary(BinaryExpressionType type, Expression left, Expression right)
             => new BinaryExpression(type, left, right);
 
-        public abstract void Accept(IExpressionVisitor visitor);
+        public abstract T Accept<T>(IExpressionVisitor<T> visitor);
     }
 
     public enum BinaryExpressionType
@@ -21,17 +21,17 @@ namespace Domain.Expressions
 
     public record ConstantExpression(int Value) : Expression
     {
-        public override void Accept(IExpressionVisitor visitor)
+        public override T Accept<T>(IExpressionVisitor<T> visitor)
         {
-            visitor.Visit(this);
+            return visitor.Visit(this);
         }
     }
 
     public record BinaryExpression(BinaryExpressionType Type, Expression Left, Expression Right) : Expression
     {
-        public override void Accept(IExpressionVisitor visitor)
+        public override T Accept<T>(IExpressionVisitor<T> visitor)
         {
-            visitor.Visit(this);
+            return visitor.Visit(this);
         }
     }
 }

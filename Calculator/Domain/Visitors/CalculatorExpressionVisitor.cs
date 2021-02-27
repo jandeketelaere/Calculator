@@ -3,22 +3,17 @@ using System;
 
 namespace Domain.Visitors
 {
-    public class CalculatorExpressionVisitor : ExpressionVisitor
+    public class CalculatorExpressionVisitor : ExpressionVisitor<int>
     {
-        public int Result { get; private set; }
-
-        public override void Visit(ConstantExpression expression)
+        public override int Visit(ConstantExpression expression)
         {
-            Result = expression.Value;
+            return expression.Value;
         }
 
-        public override void Visit(BinaryExpression expression)
+        public override int Visit(BinaryExpression expression)
         {
-            Visit(expression.Left);
-            var left = Result;
-
-            Visit(expression.Right);
-            var right = Result;
+            var left = Visit(expression.Left);
+            var right = Visit(expression.Right);
 
             var result = expression.Type switch
             {
@@ -27,7 +22,7 @@ namespace Domain.Visitors
                 _ => throw new NotImplementedException($"No implementation found for type {expression.Type}"),
             };
 
-            Result = result;
+            return result;
         }
     }
 }

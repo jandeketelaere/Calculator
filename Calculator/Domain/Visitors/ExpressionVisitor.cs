@@ -2,15 +2,15 @@
 
 namespace Domain.Visitors
 {
-    public abstract class ExpressionVisitor : IExpressionVisitor
+    public abstract class ExpressionVisitor<T> : IExpressionVisitor<T>
     {
-        public void Visit(Expression expression)
+        public T Visit(Expression expression)
         {
-            expression.Accept(this);
+            return expression.Accept(this);
         }
 
-        public abstract void Visit(ConstantExpression expression);
+        public abstract T Visit(ConstantExpression expression);
 
-        public abstract void Visit(BinaryExpression expression);
+        public abstract T Visit(BinaryExpression expression);
     }
 }

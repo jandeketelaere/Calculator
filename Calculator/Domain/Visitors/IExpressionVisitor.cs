@@ -2,10 +2,10 @@
 
 namespace Domain.Visitors
 {
-    public interface IExpressionVisitor
+    public interface IExpressionVisitor<T>
     {
-        void Visit(Expression expression);
-        void Visit(ConstantExpression expression);
-        void Visit(BinaryExpression expression);
+        T Visit(Expression expression);
+        T Visit(ConstantExpression expression);
+        T Visit(BinaryExpression expression);
     }
 }
