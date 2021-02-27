@@ -11,10 +11,8 @@ namespace Domain.Interpreters
             visitor.Visit(expression);
 
             var result = visitor.Result;
-            if (result == null)
-                throw new System.Exception("boem");
 
-            return result.Value;
+            return result;
         }
     }
 }

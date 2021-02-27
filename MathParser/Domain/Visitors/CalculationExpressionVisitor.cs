@@ -5,12 +5,7 @@ namespace Domain.Visitors
 {
     public class CalculationExpressionVisitor : ExpressionVisitor
     {
-        public int? Result { get; private set; }
-
-        public CalculationExpressionVisitor()
-        {
-            Result = null;
-        }
+        public int Result { get; private set; }
 
         public override void Visit(ConstantExpression expression)
         {
