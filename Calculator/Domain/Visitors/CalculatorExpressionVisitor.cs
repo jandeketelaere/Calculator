@@ -3,7 +3,7 @@ using System;
 
 namespace Domain.Visitors
 {
-    public class CalculationExpressionVisitor : ExpressionVisitor
+    public class CalculatorExpressionVisitor : ExpressionVisitor
     {
         public int Result { get; private set; }
 

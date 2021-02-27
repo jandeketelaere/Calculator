@@ -7,7 +7,7 @@ namespace Domain.Interpreters
     {
         public int Interpret(Expression expression)
         {
-            var visitor = new CalculationExpressionVisitor();
+            var visitor = new CalculatorExpressionVisitor();
             visitor.Visit(expression);
 
             var result = visitor.Result;
