@@ -21,8 +21,7 @@ namespace Domain.Expressions
 
             while (HasTokenType(TokenType.Plus, TokenType.Minus))
             {
-                MoveNext();
-                var token = Current();
+                var token = GetToken();
 
                 var type = token.TokenType == TokenType.Plus
                     ? BinaryExpressionType.Add
@@ -40,8 +39,7 @@ namespace Domain.Expressions
         {
             if (HasTokenType(TokenType.Plus, TokenType.Minus))
             {
-                MoveNext();
-                var token = Current();
+                var token = GetToken();
 
                 var type = token.TokenType == TokenType.Plus
                     ? UnaryExpressionType.Plus
@@ -59,8 +57,7 @@ namespace Domain.Expressions
         {
             if (HasTokenType(TokenType.Number))
             {
-                MoveNext();
-                var token = Current() as NumberToken;
+                var token = GetToken() as NumberToken;
 
                 return Expression.Constant(token.Value);
             }
@@ -71,7 +68,7 @@ namespace Domain.Expressions
         private void MoveNext()
             => _enumerator.MoveNext();
 
-        private Token Current()
+        private Token GetToken()
             => _enumerator.Current;
 
         private bool HasTokenType(params TokenType[] tokenTypes)
@@ -81,7 +78,13 @@ namespace Domain.Expressions
 
             var token = _enumerator.Peek();
 
-            return token.TokenType.In(tokenTypes);
+            if (token.TokenType.In(tokenTypes))
+            {
+                MoveNext();
+                return true;
+            }
+
+            return false;
         }
     }
 }
