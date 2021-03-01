@@ -10,7 +10,7 @@ namespace Domain.Visitors
         }
 
         public abstract T Visit(ConstantExpression expression);
-
         public abstract T Visit(BinaryExpression expression);
+        public abstract T Visit(UnaryExpression expression);
     }
 }

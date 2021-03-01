@@ -19,7 +19,21 @@ namespace Domain.Visitors
             {
                 BinaryExpressionType.Add => left + right,
                 BinaryExpressionType.Subtract => left - right,
-                _ => throw new NotImplementedException($"No implementation found for type {expression.Type}"),
+                _ => throw new NotImplementedException($"No implementation found for type {expression.Type}")
+            };
+
+            return result;
+        }
+
+        public override int Visit(UnaryExpression expression)
+        {
+            var right = Visit(expression.Right);
+
+            var result = expression.Type switch
+            {
+                UnaryExpressionType.Plus => + right,
+                UnaryExpressionType.Minus => - right,
+                _ => throw new NotImplementedException($"No implementation found for type {expression.Type}")
             };
 
             return result;

@@ -10,28 +10,9 @@ namespace Domain.Expressions
         public static Expression Binary(BinaryExpressionType type, Expression left, Expression right)
             => new BinaryExpression(type, left, right);
 
+        public static Expression Unary(UnaryExpressionType type, Expression right)
+            => new UnaryExpression(type, right);
+
         public abstract T Accept<T>(IExpressionVisitor<T> visitor);
-    }
-
-    public enum BinaryExpressionType
-    {
-        Add,
-        Subtract
-    }
-
-    public record ConstantExpression(int Value) : Expression
-    {
-        public override T Accept<T>(IExpressionVisitor<T> visitor)
-        {
-            return visitor.Visit(this);
-        }
-    }
-
-    public record BinaryExpression(BinaryExpressionType Type, Expression Left, Expression Right) : Expression
-    {
-        public override T Accept<T>(IExpressionVisitor<T> visitor)
-        {
-            return visitor.Visit(this);
-        }
     }
 }

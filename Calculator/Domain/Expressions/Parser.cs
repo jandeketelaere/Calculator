@@ -12,12 +12,12 @@ namespace Domain.Expressions
         {
             _enumerator = new Enumerator<Token>(tokens);
 
-            return ParseAdditionSubtraction();
+            return ParseAdditionOrSubtraction();
         }
 
-        private Expression ParseAdditionSubtraction()
+        private Expression ParseAdditionOrSubtraction()
         {
-            var expression = ParseNumber();
+            var expression = ParsePositiveOrNegative();
 
             while (HasTokenType(TokenType.Plus, TokenType.Minus))
             {
@@ -28,12 +28,31 @@ namespace Domain.Expressions
                     ? BinaryExpressionType.Add
                     : BinaryExpressionType.Subtract;
 
-                var right = ParseNumber();
+                var right = ParsePositiveOrNegative();
 
                 expression = Expression.Binary(type, expression, right);
             }
 
             return expression;
+        }
+
+        private Expression ParsePositiveOrNegative()
+        {
+            if (HasTokenType(TokenType.Plus, TokenType.Minus))
+            {
+                MoveNext();
+                var token = Current();
+
+                var type = token.TokenType == TokenType.Plus
+                    ? UnaryExpressionType.Plus
+                    : UnaryExpressionType.Minus;
+
+                var right = ParsePositiveOrNegative();
+
+                return Expression.Unary(type, right);
+            }
+
+            return ParseNumber();
         }
 
         private Expression ParseNumber()
