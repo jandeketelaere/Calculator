@@ -7,7 +7,7 @@ namespace Domain.Tokens
     {
         public IEnumerable<Token> Tokenize(string input)
         {
-            var enumerator = new Enumerator<string>(input.Select(i => i.ToString()));
+            var enumerator = new Enumerator<string>(input.Select(char.ToString));
             string tempNumber = null;
 
             while (enumerator.HasNext())
@@ -22,11 +22,7 @@ namespace Domain.Tokens
                 }
 
                 if (IsNumeric(character))
-                {
-                    tempNumber = tempNumber == null
-                        ? character
-                        : tempNumber + character;
-                }
+                    tempNumber = $"{tempNumber}{character}";
 
                 if (character == "+")
                     yield return Token.Plus;
