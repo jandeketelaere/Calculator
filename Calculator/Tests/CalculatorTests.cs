@@ -12,13 +12,13 @@ namespace Tests
         [Fact]
         public void Calculate_Should_Work()
         {
-            var input = "-5*2+10/5-1";
+            var input = "-5*(2+10)/5-1";
 
             var calculator = new Calculator(new Tokenizer(), new Parser(), new Interpreter());
 
             var result = calculator.Calculate(input);
 
-            result.ShouldBe(-9);
+            result.ShouldBe(-13);
         }
     }
 }

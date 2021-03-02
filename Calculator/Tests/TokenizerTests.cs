@@ -34,7 +34,8 @@ namespace Tests
                 new object[]{"-55-5", new[] { Token.Minus, Token.Number(55), Token.Minus, Token.Number(5) } },
                 new object[]{"-55-55", new[] { Token.Minus, Token.Number(55), Token.Minus, Token.Number(55) } },
                 new object[]{"+5-5-+55++--", new[] { Token.Plus, Token.Number(5), Token.Minus, Token.Number(5), Token.Minus, Token.Plus, Token.Number(55), Token.Plus, Token.Plus, Token.Minus, Token.Minus } },
-                new object[]{"55*123/987", new[] { Token.Number(55), Token.Multiplication, Token.Number(123), Token.Division, Token.Number(987) } }
+                new object[]{"55*123/987", new[] { Token.Number(55), Token.Multiplication, Token.Number(123), Token.Division, Token.Number(987) } },new object[]{"55*123/987", new[] { Token.Number(55), Token.Multiplication, Token.Number(123), Token.Division, Token.Number(987) } },
+                new object[]{"55+(10-5)", new[] { Token.Number(55), Token.Plus, Token.LeftParenthesis, Token.Number(10), Token.Minus, Token.Number(5), Token.RightParenthesis} }
             };
     }
 }

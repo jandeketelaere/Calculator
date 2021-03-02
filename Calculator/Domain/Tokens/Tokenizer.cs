@@ -35,6 +35,12 @@ namespace Domain.Tokens
 
                 if (character == "/")
                     yield return Token.Division;
+
+                if (character == "(")
+                    yield return Token.LeftParenthesis;
+
+                if (character == ")")
+                    yield return Token.RightParenthesis;
             }
 
             if (tempNumber != null)

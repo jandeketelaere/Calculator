@@ -103,6 +103,25 @@ namespace Tests
                             Expression.Constant(5)
                         )
                     )
+                },
+                new object[]
+                {
+                    new[] { Token.LeftParenthesis, Token.Minus, Token.Number(5), Token.Plus, Token.Number(5), Token.RightParenthesis, Token.Multiplication, Token.Number(5) },
+                    Expression.Binary
+                    (
+                        BinaryExpressionType.Multiply,
+                        Expression.Binary
+                        (
+                            BinaryExpressionType.Add,
+                            Expression.Unary
+                            (
+                                UnaryExpressionType.Minus,
+                                Expression.Constant(5)
+                            ),
+                            Expression.Constant(5)
+                        ),
+                        Expression.Constant(5)
+                    )
                 }
             };
     }
