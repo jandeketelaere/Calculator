@@ -4,7 +4,9 @@
     {
         Number,
         Plus,
-        Minus
+        Minus,
+        Multiplication,
+        Division
     }
 
     public abstract record Token
@@ -24,9 +26,17 @@
 
         public static Token Minus
             => new MinusToken();
+
+        public static Token Multiplication
+            => new MultiplicationToken();
+
+        public static Token Division
+            => new DivisionToken();
     }
 
     public record NumberToken(int Value) : Token(TokenType.Number);
     public record PlusToken() : Token(TokenType.Plus);
     public record MinusToken() : Token(TokenType.Minus);
+    public record MultiplicationToken() : Token(TokenType.Multiplication);
+    public record DivisionToken() : Token(TokenType.Division);
 }

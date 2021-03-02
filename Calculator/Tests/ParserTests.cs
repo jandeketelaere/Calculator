@@ -85,6 +85,25 @@ namespace Tests
                         )
                     )
                 },
+                new object[]
+                {
+                    new[] { Token.Minus, Token.Number(5), Token.Plus, Token.Number(5), Token.Multiplication, Token.Number(5) },
+                    Expression.Binary
+                    (
+                        BinaryExpressionType.Add,
+                        Expression.Unary
+                        (
+                            UnaryExpressionType.Minus,
+                            Expression.Constant(5)
+                        ),
+                        Expression.Binary
+                        (
+                            BinaryExpressionType.Multiply,
+                            Expression.Constant(5),
+                            Expression.Constant(5)
+                        )
+                    )
+                }
             };
     }
 }

@@ -19,6 +19,8 @@ namespace Domain.Visitors
             {
                 BinaryExpressionType.Add => left + right,
                 BinaryExpressionType.Subtract => left - right,
+                BinaryExpressionType.Multiply => left * right,
+                BinaryExpressionType.Divide => left / right,
                 _ => throw new NotImplementedException($"No implementation found for type {expression.Type}")
             };
 

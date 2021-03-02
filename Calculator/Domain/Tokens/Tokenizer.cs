@@ -29,6 +29,12 @@ namespace Domain.Tokens
 
                 if (character == "-")
                     yield return Token.Minus;
+
+                if (character == "*")
+                    yield return Token.Multiplication;
+
+                if (character == "/")
+                    yield return Token.Division;
             }
 
             if (tempNumber != null)

@@ -59,6 +59,25 @@ namespace Tests
                     ),
                     -15
                 },
+                new object[]
+                {
+                    Expression.Binary
+                    (
+                        BinaryExpressionType.Add,
+                        Expression.Unary
+                        (
+                            UnaryExpressionType.Minus,
+                            Expression.Constant(5)
+                        ),
+                        Expression.Binary
+                        (
+                            BinaryExpressionType.Multiply,
+                            Expression.Constant(5),
+                            Expression.Constant(5)
+                        )
+                    ),
+                    20
+                }
             };
     }
 }

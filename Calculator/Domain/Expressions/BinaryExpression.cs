@@ -5,7 +5,9 @@ namespace Domain.Expressions
     public enum BinaryExpressionType
     {
         Add,
-        Subtract
+        Subtract,
+        Multiply,
+        Divide
     }
 
     public record BinaryExpression(BinaryExpressionType Type, Expression Left, Expression Right) : Expression
